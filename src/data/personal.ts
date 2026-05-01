@@ -1,0 +1,20 @@
+export const personal = {
+  name: "Cristian Yepes",
+  firstName: "Cristian",
+  title: "Full-Stack Engineer",
+  subtitle: "Backend specialist",
+  tagline: "I build production-grade web apps and APIs — from MVP to scale.",
+  eyebrow: "Hi, I'm",
+  location: "Barranquilla, Colombia",
+  email: "cdyepes10@gmail.com",
+  github: "https://github.com/Ycristian01",
+  linkedin: "https://www.linkedin.com/in/cdyepes/",
+  twitter: null as string | null,
+  calendly: null as string | null,
+  languages: ["Spanish (native)", "English (B2 — IELTS certified)"],
+  bio: [
+    "Currently building Trashie's sustainable rewards platform at Katapult Labs — shipping Stripe integrations, logistics APIs (FedEx, UPS, Happy Returns), Firebase Auth, and a React / React Native stack on Google Cloud.",
+    "4+ years across NestJS, Ruby on Rails, Node.js, and React. I've led backend migrations, shipped complex e-commerce integrations, and cut page-load times by 30% through query optimization.",
+    "Open to senior full-stack and backend roles, plus selective freelance engagements where I can make a real impact.",
+  ],
+};

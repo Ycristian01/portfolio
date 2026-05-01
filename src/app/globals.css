@@ -1,26 +1,112 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* Class-based dark mode (next-themes adds .dark to <html>) */
+@variant dark (&:where(.dark, .dark *));
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-jetbrains-mono);
+
+  --color-background: var(--bg);
+  --color-surface: var(--bg-elevated);
+  --color-foreground: var(--text);
+  --color-muted: var(--text-muted);
+  --color-subtle: var(--text-subtle);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ── Light theme ── */
+:root {
+  color-scheme: light;
+  --bg: #ffffff;
+  --bg-elevated: #f8fafc;
+  --text: #0f172a;
+  --text-muted: #64748b;
+  --text-subtle: #94a3b8;
+  --border: #e2e8f0;
+  --accent: #4f46e5;
+  --accent-hover: #4338ca;
+  --dot: #cbd5e1;
+}
+
+/* ── Dark theme ── */
+.dark {
+  color-scheme: dark;
+  --bg: #0b1020;
+  --bg-elevated: #11172a;
+  --text: #f1f5f9;
+  --text-muted: #94a3b8;
+  --text-subtle: #475569;
+  --border: rgba(255, 255, 255, 0.08);
+  --accent: #818cf8;
+  --accent-hover: #a5b4fc;
+  --dot: #1e2d4d;
+}
+
+/* ── Base ── */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Offset anchor links below sticky navbar */
+[id] {
+  scroll-margin-top: 4.5rem;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  transition: background-color 0.3s ease, color 0.2s ease;
+}
+
+/* ── Dot grid background ── */
+.dot-grid {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: radial-gradient(var(--dot) 1px, transparent 1px);
+  background-size: 24px 24px;
+  mask-image: radial-gradient(
+    ellipse 75% 65% at 50% 50%,
+    black 20%,
+    transparent 85%
+  );
+  -webkit-mask-image: radial-gradient(
+    ellipse 75% 65% at 50% 50%,
+    black 20%,
+    transparent 85%
+  );
+  transition: background-image 0.3s ease;
+}
+
+/* ── Selection ── */
+::selection {
+  background: rgba(79, 70, 229, 0.2);
+  color: var(--text);
+}
+
+.dark ::selection {
+  background: rgba(129, 140, 248, 0.25);
+}
+
+/* ── Focus ring ── */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
