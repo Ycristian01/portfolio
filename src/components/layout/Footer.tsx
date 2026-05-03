@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { Mail } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/ui/SocialIcons";
+import { NavLink } from "@/components/ui/NavLink";
 import { personal } from "@/data/personal";
 import { navLinks } from "@/data/navigation";
 
@@ -14,13 +14,13 @@ export function Footer() {
 
         <nav className="flex items-center gap-5">
           {navLinks.map((link) => (
-            <Link
+            <NavLink
               key={link.href}
               href={link.href}
               className="text-sm text-muted hover:text-foreground transition-colors"
             >
               {link.label}
-            </Link>
+            </NavLink>
           ))}
         </nav>
 

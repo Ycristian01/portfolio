@@ -34,7 +34,18 @@ export function Experience() {
                   <h3 className="font-semibold text-foreground leading-snug">
                     {role.title}
                   </h3>
-                  <p className="text-sm text-accent font-medium">{role.company}</p>
+                  {role.url ? (
+                    <a
+                      href={role.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-accent font-medium hover:text-accent-hover transition-colors"
+                    >
+                      {role.company}
+                    </a>
+                  ) : (
+                    <p className="text-sm text-accent font-medium">{role.company}</p>
+                  )}
                 </div>
                 <div className="flex flex-col sm:items-end gap-0.5 shrink-0">
                   <span className="text-xs font-mono text-muted">{role.dates}</span>

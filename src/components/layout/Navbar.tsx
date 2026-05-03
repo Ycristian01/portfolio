@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { Menu, X, FileDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
+import { NavLink } from "@/components/ui/NavLink";
 import { navLinks } from "@/data/navigation";
 import { personal } from "@/data/personal";
 import { cn } from "@/lib/utils";
@@ -44,12 +45,12 @@ export function Navbar() {
         <ul className="hidden md:flex items-center gap-7">
           {navLinks.map((link) => (
             <li key={link.href}>
-              <Link
+              <NavLink
                 href={link.href}
                 className="text-sm text-muted hover:text-foreground transition-colors"
               >
                 {link.label}
-              </Link>
+              </NavLink>
             </li>
           ))}
         </ul>
@@ -93,13 +94,13 @@ export function Navbar() {
             <ul className="max-w-5xl mx-auto px-6 py-4 flex flex-col gap-1">
               {navLinks.map((link) => (
                 <li key={link.href}>
-                  <Link
+                  <NavLink
                     href={link.href}
                     onClick={closeMenu}
                     className="block py-2.5 text-muted hover:text-foreground transition-colors"
                   >
                     {link.label}
-                  </Link>
+                  </NavLink>
                 </li>
               ))}
               <li className="pt-2 border-t border-border mt-1">

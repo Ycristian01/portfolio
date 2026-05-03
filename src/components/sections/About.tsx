@@ -23,18 +23,15 @@ export function About() {
             {...fadeIn(0.15)}
             className="flex flex-col items-center md:items-start gap-5"
           >
-            <div className="relative w-44 h-44 md:w-52 md:h-52 rounded-2xl overflow-hidden border border-border bg-surface flex items-center justify-center">
+            <div className="relative w-44 h-64 md:w-52 md:h-72 rounded-2xl overflow-hidden border border-border bg-surface flex items-center justify-center">
               <Image
-                src="/photo.jpg"
+                src="/cristian.jpeg"
                 alt={personal.name}
                 fill
-                className="object-cover"
+                className="object-cover object-top"
                 priority
               />
-              {/* Initials fallback — visible until image loads or if it fails */}
-              <span className="absolute inset-0 flex items-center justify-center text-3xl font-bold text-muted select-none" aria-hidden="true">
-                CY
-              </span>
+
             </div>
 
             <div className="flex flex-col gap-2.5 text-sm">
