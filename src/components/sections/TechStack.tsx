@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { techStack } from "@/data/tech-stack";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { TechIcon } from "@/components/ui/TechIcon";
 import { cn } from "@/lib/utils";
 import { fadeInUp } from "@/lib/animations";
 
@@ -35,12 +36,13 @@ export function TechStack() {
                   <span
                     key={item.name}
                     className={cn(
-                      "text-xs px-2.5 py-1 rounded-lg font-mono transition-colors",
+                      "inline-flex items-center gap-1.5 text-xs px-2.5 py-1 rounded-lg font-mono transition-colors",
                       item.level === "proficient"
                         ? "bg-accent/10 text-accent border border-accent/20"
                         : "bg-surface text-subtle border border-border"
                     )}
                   >
+                    <TechIcon name={item.name} size={12} />
                     {item.name}
                   </span>
                 ))}

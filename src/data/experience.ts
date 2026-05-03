@@ -1,5 +1,6 @@
 export type Role = {
   company: string;
+  url?: string;
   title: string;
   type: string;
   dates: string;
@@ -10,6 +11,7 @@ export type Role = {
 export const experience: Role[] = [
   {
     company: "Katapult Labs",
+    url: "https://www.katapultlabs.ai/",
     title: "Full-Stack Engineer",
     type: "Full-time",
     dates: "Aug 2025 – Present",
@@ -34,7 +36,8 @@ export const experience: Role[] = [
     ],
   },
   {
-    company: "Gases del Caribe SA ESP",
+    company: "Horbath Technologies",
+    url: "https://horbath.com",
     title: "Full-Stack Developer",
     type: "Full-time",
     dates: "Jun 2022 – May 2024",
@@ -48,6 +51,7 @@ export const experience: Role[] = [
   },
   {
     company: "Koombea",
+    url: "https://www.koombea.com",
     title: "Backend Developer",
     type: "Full-time",
     dates: "Feb 2021 – Jun 2022",

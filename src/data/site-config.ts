@@ -1,7 +1,7 @@
 export const siteConfig = {
   url: "https://cdyepes.com",
   name: "Cristian Yepes",
-  title: "Cristian Yepes — Full-Stack Engineer",
+  title: "Cristian Yepes | Full-Stack Engineer",
   description:
     "Full-Stack Engineer specializing in backend APIs, third-party integrations, and production web apps. Based in Barranquilla, Colombia. Available for freelance.",
   ogImage: "https://cdyepes.com/og-image.png",

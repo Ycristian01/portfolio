@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Lock } from "lucide-react";
+import { Lock, ExternalLink, Smartphone } from "lucide-react";
 import { projects } from "@/data/projects";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { fadeInUp } from "@/lib/animations";
@@ -16,7 +16,7 @@ export function Projects() {
           <SectionHeading
             tag="03 / Work"
             title="Selected projects"
-            description="A snapshot of production work. Most projects are under NDA — context and results are what matter."
+            description="A snapshot of production work. Most projects are under NDA. Context and results are what matter."
           />
         </motion.div>
 
@@ -56,6 +56,33 @@ export function Projects() {
                 <p className="text-xs font-medium text-green-600 dark:text-green-400 bg-green-500/10 px-3 py-1.5 rounded-lg">
                   {project.outcome}
                 </p>
+              )}
+
+              {(project.liveUrl || project.appUrl) && (
+                <div className="flex flex-wrap gap-2">
+                  {project.liveUrl && (
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-xs text-muted hover:text-foreground border border-border hover:border-accent/40 px-3 py-1.5 rounded-lg transition-all"
+                    >
+                      <ExternalLink size={11} />
+                      {project.internal ? "Visit (internal)" : "Live site"}
+                    </a>
+                  )}
+                  {project.appUrl && (
+                    <a
+                      href={project.appUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-xs text-muted hover:text-foreground border border-border hover:border-accent/40 px-3 py-1.5 rounded-lg transition-all"
+                    >
+                      <Smartphone size={11} />
+                      iOS App
+                    </a>
+                  )}
+                </div>
               )}
 
               <div className="flex flex-wrap gap-1.5 pt-2 border-t border-border">
