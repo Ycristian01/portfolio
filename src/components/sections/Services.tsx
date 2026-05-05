@@ -2,11 +2,10 @@
 
 import { motion } from "framer-motion";
 import { Monitor, Server, Plug, Gauge, Check, ArrowRight } from "lucide-react";
-import { services } from "@/data/services";
-import { personal } from "@/data/personal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { cn } from "@/lib/utils";
 import { fadeInUp } from "@/lib/animations";
+import type { PersonalData, UiStrings, SiteContent } from "@/i18n/get-content";
 
 const iconMap: Record<string, React.ElementType> = {
   Monitor,
@@ -17,15 +16,21 @@ const iconMap: Record<string, React.ElementType> = {
 
 const fadeIn = fadeInUp;
 
-export function Services() {
+type Props = {
+  personal: PersonalData;
+  services: SiteContent["services"];
+  ui: UiStrings;
+};
+
+export function Services({ personal, services, ui }: Props) {
   return (
     <section id="services" className="relative z-10 py-24 px-6">
       <div className="max-w-5xl mx-auto">
         <motion.div {...fadeIn()}>
           <SectionHeading
-            tag="02 / Services"
-            title="How I can help"
-            description="I take on selective freelance engagements where I can genuinely move the needle. Here's where I'm most effective."
+            tag={ui.servicesTag}
+            title={ui.servicesTitle}
+            description={ui.servicesDescription}
           />
         </motion.div>
 
@@ -66,7 +71,7 @@ export function Services() {
 
                 <div className="flex flex-wrap items-center justify-between gap-2 mt-auto pt-4 border-t border-border text-xs text-subtle">
                   <span>
-                    <span className="text-muted font-medium">Best for: </span>
+                    <span className="text-muted font-medium">{ui.servicesBestForLabel}</span>
                     {service.bestFor}
                   </span>
                   <span className="font-mono">{service.engagement}</span>
@@ -76,15 +81,12 @@ export function Services() {
           })}
         </div>
 
-        <motion.div
-          {...fadeIn(0.45)}
-          className="mt-10 flex justify-center"
-        >
+        <motion.div {...fadeIn(0.45)} className="mt-10 flex justify-center">
           <a
             href={`mailto:${personal.email}?subject=Freelance%20inquiry`}
             className="inline-flex items-center gap-2 text-sm font-medium text-accent hover:text-accent-hover border border-accent/30 hover:border-accent px-5 py-2.5 rounded-xl hover:bg-accent/5 transition-all"
           >
-            Book a free 20-min discovery call
+            {ui.servicesBookCallCta}
             <ArrowRight size={15} />
           </a>
         </motion.div>

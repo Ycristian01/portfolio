@@ -3,8 +3,11 @@
 import { motion } from "framer-motion";
 import { FileDown } from "lucide-react";
 import { fadeInUp } from "@/lib/animations";
+import type { UiStrings } from "@/i18n/get-content";
 
-export function ResumeCTA() {
+type Props = { ui: UiStrings };
+
+export function ResumeCTA({ ui }: Props) {
   return (
     <section className="relative z-10 py-16 px-6">
       <div className="max-w-5xl mx-auto">
@@ -14,19 +17,17 @@ export function ResumeCTA() {
         >
           <div>
             <h3 className="text-lg font-semibold text-foreground">
-              Want the full picture?
+              {ui.resumeCtaHeading}
             </h3>
-            <p className="text-sm text-muted mt-1">
-              Download my resume for a one-page summary of my experience and skills.
-            </p>
+            <p className="text-sm text-muted mt-1">{ui.resumeCtaBody}</p>
           </div>
           <a
-            href="/resume-cdyepes.pdf"
+            href={ui.resumeUrl}
             download
             className="shrink-0 inline-flex items-center gap-2 bg-accent hover:bg-accent-hover text-white text-sm font-medium px-5 py-2.5 rounded-xl shadow-sm hover:shadow-md transition-all"
           >
             <FileDown size={16} />
-            Download Resume
+            {ui.resumeCtaButton}
           </a>
         </motion.div>
       </div>

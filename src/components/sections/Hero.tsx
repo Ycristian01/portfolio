@@ -3,12 +3,14 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Check, Copy, ChevronDown } from "lucide-react";
-import { personal } from "@/data/personal";
 import { heroFade } from "@/lib/animations";
+import type { PersonalData, UiStrings } from "@/i18n/get-content";
 
 const fade = heroFade;
 
-export function Hero() {
+type Props = { personal: PersonalData; ui: UiStrings };
+
+export function Hero({ personal, ui }: Props) {
   const [copied, setCopied] = useState(false);
 
   const copyEmail = async () => {
@@ -58,13 +60,13 @@ export function Hero() {
             href="#services"
             className="inline-flex items-center gap-2 bg-accent hover:bg-accent-hover text-white text-sm font-medium px-5 py-2.5 rounded-xl shadow-sm hover:shadow-md transition-all"
           >
-            Hire me
+            {ui.hireCta}
           </a>
           <a
             href="#projects"
             className="inline-flex items-center gap-2 bg-surface hover:bg-border text-foreground text-sm font-medium px-5 py-2.5 rounded-xl border border-border transition-all"
           >
-            View work
+            {ui.viewWorkCta}
           </a>
         </motion.div>
 
@@ -72,7 +74,7 @@ export function Hero() {
           {...fade(0.6)}
           onClick={copyEmail}
           className="inline-flex items-center gap-2 text-sm text-muted hover:text-foreground transition-colors group"
-          aria-label="Copy email address"
+          aria-label={ui.copyEmailAriaLabel}
         >
           <span className="font-mono">{personal.email}</span>
           <span className="p-1 rounded-md bg-surface border border-border group-hover:border-accent/40 transition-colors">
@@ -84,13 +86,10 @@ export function Hero() {
           </span>
         </motion.button>
 
-        <motion.div
-          {...fade(0.8)}
-          className="mt-16 flex justify-center"
-        >
+        <motion.div {...fade(0.8)} className="mt-16 flex justify-center">
           <a
             href="#about"
-            aria-label="Scroll down"
+            aria-label={ui.scrollDownAriaLabel}
             className="text-subtle hover:text-muted transition-colors animate-bounce"
           >
             <ChevronDown size={22} />

@@ -1,23 +1,25 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { techStack } from "@/data/tech-stack";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { TechIcon } from "@/components/ui/TechIcon";
 import { cn } from "@/lib/utils";
 import { fadeInUp } from "@/lib/animations";
+import type { UiStrings, SiteContent } from "@/i18n/get-content";
 
 const fadeIn = fadeInUp;
 
-export function TechStack() {
+type Props = { techStack: SiteContent["techStack"]; ui: UiStrings };
+
+export function TechStack({ techStack, ui }: Props) {
   return (
     <section id="tech" className="relative z-10 py-24 px-6">
       <div className="max-w-5xl mx-auto">
         <motion.div {...fadeIn()}>
           <SectionHeading
-            tag="04 / Skills"
-            title="Tech stack"
-            description="Tools I reach for daily and frameworks I can pick up fast."
+            tag={ui.techTag}
+            title={ui.techTitle}
+            description={ui.techDescription}
           />
         </motion.div>
 
@@ -51,14 +53,11 @@ export function TechStack() {
           ))}
         </div>
 
-        <motion.p
-          {...fadeIn(0.5)}
-          className="mt-6 text-xs text-subtle font-mono"
-        >
+        <motion.p {...fadeIn(0.5)} className="mt-6 text-xs text-subtle font-mono">
           <span className="inline-block w-2 h-2 rounded-sm bg-accent/10 border border-accent/20 mr-1.5 align-middle" />
-          Proficient &nbsp;&nbsp;
+          {ui.techProficient}&nbsp;&nbsp;
           <span className="inline-block w-2 h-2 rounded-sm bg-surface border border-border mr-1.5 align-middle" />
-          Familiar
+          {ui.techFamiliar}
         </motion.p>
       </div>
     </section>
