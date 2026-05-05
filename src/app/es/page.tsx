@@ -8,8 +8,8 @@ import { Experience } from "@/components/sections/Experience";
 import { ResumeCTA } from "@/components/sections/ResumeCTA";
 import { Contact } from "@/components/sections/Contact";
 
-export default async function Home() {
-  const content = await getContent("en");
+export default async function HomeEs() {
+  const content = await getContent("es");
   return (
     <>
       <Hero personal={content.personal} ui={content.ui} />

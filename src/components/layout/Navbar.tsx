@@ -2,17 +2,27 @@
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { Menu, X, FileDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
+import { LanguageToggle } from "@/components/ui/LanguageToggle";
 import { NavLink } from "@/components/ui/NavLink";
-import { navLinks } from "@/data/navigation";
-import { personal } from "@/data/personal";
+import { navLinks as navLinksEn } from "@/data/navigation";
+import { navLinks as navLinksEs } from "@/data/navigation.es";
+import { ui as uiEn } from "@/data/ui-strings.en";
+import { ui as uiEs } from "@/data/ui-strings.es";
 import { cn } from "@/lib/utils";
 
-export function Navbar() {
+type NavbarProps = { firstName: string };
+
+export function Navbar({ firstName }: NavbarProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
+  const isEs = pathname.startsWith("/es");
+  const navLinks = isEs ? navLinksEs : navLinksEn;
+  const ui = isEs ? uiEs : uiEn;
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 16);
@@ -34,10 +44,10 @@ export function Navbar() {
       <nav className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
         {/* Logo */}
         <Link
-          href="/"
+          href={isEs ? "/es" : "/"}
           className="font-bold text-foreground tracking-tight hover:text-accent transition-colors"
         >
-          {personal.firstName}
+          {firstName}
           <span className="text-accent">.</span>
         </Link>
 
@@ -58,22 +68,24 @@ export function Navbar() {
         {/* Desktop right side */}
         <div className="hidden md:flex items-center gap-2">
           <ThemeToggle />
+          <LanguageToggle />
           <a
-            href="/resume-cdyepes.pdf"
+            href={ui.resumeUrl}
             download
             className="inline-flex items-center gap-1.5 text-sm font-medium text-accent border border-accent/30 hover:border-accent hover:bg-accent/5 px-3 py-1.5 rounded-lg transition-all"
           >
             <FileDown size={15} />
-            Resume
+            {ui.resumeNavLabel}
           </a>
         </div>
 
         {/* Mobile right side */}
         <div className="flex md:hidden items-center gap-1">
           <ThemeToggle />
+          <LanguageToggle />
           <button
             onClick={() => setMobileOpen((v) => !v)}
-            aria-label="Toggle menu"
+            aria-label={ui.navToggleMenuAriaLabel}
             className="p-2 rounded-lg text-muted hover:text-foreground hover:bg-surface transition-colors"
           >
             {mobileOpen ? <X size={20} /> : <Menu size={20} />}
@@ -105,13 +117,13 @@ export function Navbar() {
               ))}
               <li className="pt-2 border-t border-border mt-1">
                 <a
-                  href="/resume-cdyepes.pdf"
+                  href={ui.resumeUrl}
                   download
                   onClick={closeMenu}
                   className="inline-flex items-center gap-1.5 text-sm font-medium text-accent py-2"
                 >
                   <FileDown size={15} />
-                  Download Resume
+                  {ui.resumeNavMobileLabel}
                 </a>
               </li>
             </ul>

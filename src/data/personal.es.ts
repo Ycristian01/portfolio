@@ -1,0 +1,20 @@
+export const personal = {
+  name: "Cristian Yepes",
+  firstName: "Cristian",
+  title: "Ingeniero Full-Stack",
+  subtitle: "Especialista Backend",
+  tagline: "Construyo aplicaciones web y APIs listas para producción, desde MVP hasta escala.",
+  eyebrow: "Hola, soy",
+  location: "Barranquilla, Colombia",
+  email: "cdyepes10@gmail.com",
+  github: "https://github.com/Ycristian01",
+  linkedin: "https://www.linkedin.com/in/cdyepes/",
+  twitter: null as string | null,
+  calendly: null as string | null,
+  languages: ["Español (nativo)", "Inglés (C1, certificado IELTS)"],
+  bio: [
+    "Actualmente construyo la plataforma de recompensas sostenibles de Trashie en Katapult Labs, implementando integraciones con Stripe, APIs logísticas (FedEx, UPS, Happy Returns), Firebase Auth y un stack React / React Native en Google Cloud.",
+    "Más de 4 años con NestJS, Ruby on Rails, Node.js y React. He liderado migraciones de backend, implementado integraciones complejas de e-commerce y reducido los tiempos de carga en un 30% mediante optimización de consultas.",
+    "Abierto a roles senior full-stack y backend, además de proyectos freelance selectivos donde pueda generar un impacto real.",
+  ],
+};

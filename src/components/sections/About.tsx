@@ -3,18 +3,20 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { MapPin } from "lucide-react";
-import { personal } from "@/data/personal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { fadeInUp } from "@/lib/animations";
+import type { PersonalData, UiStrings } from "@/i18n/get-content";
 
 const fadeIn = fadeInUp;
 
-export function About() {
+type Props = { personal: PersonalData; ui: UiStrings };
+
+export function About({ personal, ui }: Props) {
   return (
     <section id="about" className="relative z-10 py-24 px-6">
       <div className="max-w-5xl mx-auto">
         <motion.div {...fadeIn()}>
-          <SectionHeading tag="01 / About" title="About me" />
+          <SectionHeading tag={ui.aboutTag} title={ui.aboutTitle} />
         </motion.div>
 
         <div className="grid md:grid-cols-[280px_1fr] gap-12 md:gap-16 items-start">
@@ -31,7 +33,6 @@ export function About() {
                 className="object-cover object-top"
                 priority
               />
-
             </div>
 
             <div className="flex flex-col gap-2.5 text-sm">
@@ -55,10 +56,7 @@ export function About() {
           </motion.div>
 
           {/* Right column */}
-          <motion.div
-            {...fadeIn(0.25)}
-            className="flex flex-col gap-5"
-          >
+          <motion.div {...fadeIn(0.25)} className="flex flex-col gap-5">
             {personal.bio.map((paragraph, i) => (
               <p key={i} className="text-muted leading-relaxed text-[15px]">
                 {paragraph}
@@ -70,7 +68,7 @@ export function About() {
                 href="#contact"
                 className="text-sm font-medium text-accent hover:text-accent-hover transition-colors"
               >
-                Get in touch →
+                {ui.aboutGetInTouch}
               </a>
             </div>
           </motion.div>

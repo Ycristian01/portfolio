@@ -1,15 +1,32 @@
+"use client";
+
+import { usePathname } from "next/navigation";
 import { Mail } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/ui/SocialIcons";
 import { NavLink } from "@/components/ui/NavLink";
-import { personal } from "@/data/personal";
-import { navLinks } from "@/data/navigation";
+import { navLinks as navLinksEn } from "@/data/navigation";
+import { navLinks as navLinksEs } from "@/data/navigation.es";
+import { ui as uiEn } from "@/data/ui-strings.en";
+import { ui as uiEs } from "@/data/ui-strings.es";
 
-export function Footer() {
+type FooterProps = {
+  name: string;
+  email: string;
+  github: string;
+  linkedin: string;
+};
+
+export function Footer({ name, email, github, linkedin }: FooterProps) {
+  const pathname = usePathname();
+  const isEs = pathname.startsWith("/es");
+  const navLinks = isEs ? navLinksEs : navLinksEn;
+  const ui = isEs ? uiEs : uiEn;
+
   return (
     <footer className="relative z-10 border-t border-border mt-24">
       <div className="max-w-5xl mx-auto px-6 py-10 flex flex-col md:flex-row items-center justify-between gap-6">
         <p className="text-sm text-subtle">
-          © {new Date().getFullYear()} {personal.name}
+          © {new Date().getFullYear()} {name}
         </p>
 
         <nav className="flex items-center gap-5">
@@ -26,26 +43,26 @@ export function Footer() {
 
         <div className="flex items-center gap-3">
           <a
-            href={personal.github}
+            href={github}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="GitHub"
+            aria-label={ui.footerGithubAriaLabel}
             className="text-muted hover:text-foreground transition-colors"
           >
             <GithubIcon className="w-[18px] h-[18px]" />
           </a>
           <a
-            href={personal.linkedin}
+            href={linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="LinkedIn"
+            aria-label={ui.footerLinkedinAriaLabel}
             className="text-muted hover:text-foreground transition-colors"
           >
             <LinkedinIcon className="w-[18px] h-[18px]" />
           </a>
           <a
-            href={`mailto:${personal.email}`}
-            aria-label="Email"
+            href={`mailto:${email}`}
+            aria-label={ui.footerEmailAriaLabel}
             className="text-muted hover:text-foreground transition-colors"
           >
             <Mail size={18} />

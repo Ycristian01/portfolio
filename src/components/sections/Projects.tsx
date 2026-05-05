@@ -2,21 +2,23 @@
 
 import { motion } from "framer-motion";
 import { Lock, ExternalLink, Smartphone } from "lucide-react";
-import { projects } from "@/data/projects";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { fadeInUp } from "@/lib/animations";
+import type { UiStrings, SiteContent } from "@/i18n/get-content";
 
 const fadeIn = fadeInUp;
 
-export function Projects() {
+type Props = { projects: SiteContent["projects"]; ui: UiStrings };
+
+export function Projects({ projects, ui }: Props) {
   return (
     <section id="projects" className="relative z-10 py-24 px-6">
       <div className="max-w-5xl mx-auto">
         <motion.div {...fadeIn()}>
           <SectionHeading
-            tag="03 / Work"
-            title="Selected projects"
-            description="A snapshot of production work. Most projects are under NDA. Context and results are what matter."
+            tag={ui.projectsTag}
+            title={ui.projectsTitle}
+            description={ui.projectsDescription}
           />
         </motion.div>
 
@@ -40,7 +42,7 @@ export function Projects() {
                 </div>
                 {project.confidential && (
                   <span
-                    title="Under NDA"
+                    title={ui.projectsNdaTitle}
                     className="shrink-0 p-1.5 rounded-lg bg-surface border border-border text-subtle"
                   >
                     <Lock size={13} />
@@ -68,7 +70,7 @@ export function Projects() {
                       className="inline-flex items-center gap-1.5 text-xs text-muted hover:text-foreground border border-border hover:border-accent/40 px-3 py-1.5 rounded-lg transition-all"
                     >
                       <ExternalLink size={11} />
-                      {project.internal ? "Visit (internal)" : "Live site"}
+                      {project.internal ? ui.projectsVisitInternal : ui.projectsLiveSite}
                     </a>
                   )}
                   {project.appUrl && (
@@ -79,7 +81,7 @@ export function Projects() {
                       className="inline-flex items-center gap-1.5 text-xs text-muted hover:text-foreground border border-border hover:border-accent/40 px-3 py-1.5 rounded-lg transition-all"
                     >
                       <Smartphone size={11} />
-                      iOS App
+                      {ui.projectsIosApp}
                     </a>
                   )}
                 </div>
